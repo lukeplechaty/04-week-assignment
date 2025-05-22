@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: rgb(255, 179, 86);
+}
+
+#form-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.form-set {
+  background-color: bisque;
+  padding: 3px;
+  display: grid;
+  grid-template-rows: 1rf;
+  gap: 3px;
+}
