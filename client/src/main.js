@@ -1,4 +1,4 @@
-const url = "http://localhost:3000";
+const url = "https://guestbook-server-4ymb.onrender.com";
 const form = document.getElementById("form-message");
 
 form.addEventListener("submit", (event) => {
