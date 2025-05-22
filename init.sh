@@ -8,6 +8,6 @@ cd server
 npm init -y
 npm i express pg dotenv cors
 touch .gitignore .env server.js queries.sql
-echo "node_modules\n.env" >> .gitignore
+echo "node_modules\n.env\ninit.sh" >> .gitignore
 cd ..
-code . 
+code .

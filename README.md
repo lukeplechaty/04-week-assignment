@@ -7,7 +7,7 @@
 - basic requirements
 
   - form is submitting data into the database as expected done ease
-  - Confirm that your project is functional on multiple screen sizes using either media queries or dynamic CSS styling \*\*\*\*
+  - dynamic CSS styling done ease but im no artes
   - Create a GET API route in server done ease
   - Create a POST API route in client done ease
   - database dummy data done ease
@@ -20,7 +20,6 @@
 
 ## References
 
--
 - i use okso.app to help make a layout
 
 https://guestbook-client-q1nt.onrender.com
