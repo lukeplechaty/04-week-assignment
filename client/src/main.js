@@ -32,7 +32,7 @@ function updateData(values) {
   });
 }
 function deleteData(values) {
-  fetch(`${url}/updateMsg/${values.id}`, {
+  fetch(`${url}/deleteMsg/${values.id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
   });
@@ -40,7 +40,10 @@ function deleteData(values) {
 
 async function setMessage(newMessage) {
   const data = await getData();
-
+  data.sort((a, b) => {
+    return a.id > b.id;
+  });
+  console.log(data);
   data.forEach((item) => {
     if (!ids[item.id]) {
       ids[item.id] = true;
@@ -77,7 +80,8 @@ async function setMessage(newMessage) {
       contaner.appendChild(message);
       contaner.appendChild(btnLike);
       if (newMessage) contaner.appendChild(btnDel);
-      messages.appendChild(contaner);
+      const firstChild = messages.firstChild;
+      messages.insertBefore(contaner, firstChild);
     }
   });
 }
