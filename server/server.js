@@ -21,7 +21,7 @@ app.post("/addMsg", (req, res) => {
 });
 
 app.get("/getMsg", async (req, res) => {
-  const query = await db.query(`SELECT * FROM guestbook ORDER BY id DESC`);
+  const query = await db.query(`SELECT * FROM guestbook ORDER BY id ASC`);
   let data = query.rows;
   res.json(data);
 });
