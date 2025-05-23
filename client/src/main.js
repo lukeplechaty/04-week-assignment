@@ -25,18 +25,16 @@ function addData(values) {
     body: JSON.stringify(values),
   });
 }
-function updateData() {
-  fetch(url + "/updateMsg", {
-    method: "POST",
+function updateData(values) {
+  fetch(`${url}/updateMsg/${values.id}/likes/${values.likes}`, {
+    method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: "",
   });
 }
 function deleteData(values) {
-  fetch(url + "/deleteMsg", {
-    method: "POST",
+  fetch(`${url}/updateMsg/${values.id}`, {
+    method: "DELETE",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(values),
   });
 }
 
@@ -65,10 +63,13 @@ async function setMessage(newMessage) {
       message.className = "message";
 
       btnLike.addEventListener("click", () => {
-        updateData();
+        item.likes++;
+        btnLike.textContent = `Likes ${item.likes}`;
+        updateData(item);
       });
       btnDel.addEventListener("click", () => {
-        deleteData(`id:${item.id}`);
+        deleteData(item);
+        messages.removeChild(contaner);
       });
 
       contaner.appendChild(messageHost);

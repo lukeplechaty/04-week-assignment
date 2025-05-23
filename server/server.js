@@ -21,7 +21,22 @@ app.post("/addMsg", (req, res) => {
 });
 
 app.get("/getMsg", async (req, res) => {
-  const data = await db.query(`SELECT * FROM guestbook`);
-  let dataJson = data.rows;
-  res.json(dataJson);
+  const query = await db.query(`SELECT * FROM guestbook`);
+  let data = query.rows;
+  res.json(data);
+});
+
+app.put("/updateMsg/:id/likes/:likes", (req, res) => {
+  const params = req.params;
+  const query = db.query(`UPDATE guestbook SET likes=($1) WHERE id=($2)`, [
+    params.likes,
+    params.id,
+  ]);
+  res.json(query);
+});
+
+app.delete("/deleteMsg/:id", (req, res) => {
+  const params = req.params;
+  const query = db.query(`DELETE FROM guestbook WHERE id=($1)`, [params.id]);
+  res.json(query);
 });
