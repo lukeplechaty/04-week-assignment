@@ -1,5 +1,9 @@
 const url = "https://guestbook-server-4ymb.onrender.com";
 const form = document.getElementById("form-message");
+const messages = document.getElementById("messages");
+let ids = [];
+
+setMessage(false);
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -12,3 +16,38 @@ form.addEventListener("submit", (event) => {
   });
   form.reset();
 });
+
+async function getData(link) {
+  const response = await fetch(url + link);
+  const data = await response.json();
+  return data;
+}
+
+async function setMessage(newMessage) {
+  const data = await getData("/getMsg");
+
+  data.forEach((item) => {
+    if (!ids[item.id]) {
+      ids[item.id] = true;
+      const messageHost = document.createElement("p");
+      const messageGuest = document.createElement("p");
+      const message = document.createElement("p");
+
+      messageHost.textContent = `To ${item.hosts_name}:`;
+      messageGuest.textContent = `From ${item.guest_name}:`;
+      message.textContent = `${item.massage}`;
+
+      messageHost.className = "message-host";
+      messageGuest.className = "message-guest";
+      message.className = "message";
+
+      messages.appendChild(messageHost);
+      messages.appendChild(messageGuest);
+      messages.appendChild(message);
+    }
+  });
+}
+
+setInterval(() => {
+  setMessage(true);
+}, 1000);
