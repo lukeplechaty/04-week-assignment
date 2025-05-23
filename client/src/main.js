@@ -1,9 +1,8 @@
 const url = "https://guestbook-server-4ymb.onrender.com";
 const form = document.getElementById("form-message");
 const messages = document.getElementById("messages");
-let ids = [];
 
-setMessage(false);
+setMessage();
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -38,56 +37,52 @@ function deleteData(values) {
   });
 }
 
-async function setMessage(newMessage) {
+async function setMessage() {
   const data = await getData();
-  data.sort((a, b) => {
-    return a.id > b.id;
-  });
-  console.log(data);
+  deleteMessages();
   data.forEach((item) => {
-    if (!ids[item.id]) {
-      ids[item.id] = true;
-      const contaner = document.createElement("div");
-      const messageHost = document.createElement("p");
-      const messageGuest = document.createElement("p");
-      const message = document.createElement("p");
-      const btnLike = document.createElement("button");
-      const btnDel = document.createElement("button");
+    const contaner = document.createElement("div");
+    const messageHost = document.createElement("p");
+    const messageGuest = document.createElement("p");
+    const message = document.createElement("p");
+    const btnLike = document.createElement("button");
+    const btnDel = document.createElement("button");
 
-      messageHost.textContent = `To ${item.hosts_name}`;
-      messageGuest.textContent = `From ${item.guest_name}`;
-      message.textContent = `${item.massage}`;
-      btnLike.textContent = `Likes ${item.likes}`;
-      btnDel.textContent = `Delete`;
+    messageHost.textContent = `To ${item.hosts_name}`;
+    messageGuest.textContent = `From ${item.guest_name}`;
+    message.textContent = `${item.massage}`;
+    btnLike.textContent = `Likes ${item.likes}`;
+    btnDel.textContent = `Delete`;
 
-      contaner.className = "contaner";
-      messageHost.className = "message-host";
-      messageGuest.className = "message-guest";
-      message.className = "message";
-      btnLike.className = "btn-like";
-      btnDel.className = "btn-delete";
+    contaner.className = "contaner";
+    messageHost.className = "message-host";
+    messageGuest.className = "message-guest";
+    message.className = "message";
+    btnLike.className = "btn-like";
+    btnDel.className = "btn-delete";
 
-      btnLike.addEventListener("click", () => {
-        item.likes++;
-        btnLike.textContent = `Likes ${item.likes}`;
-        updateData(item);
-      });
-      btnDel.addEventListener("click", () => {
-        deleteData(item);
-        messages.removeChild(contaner);
-      });
+    btnLike.addEventListener("click", () => {
+      item.likes++;
+      updateData(item);
+    });
+    btnDel.addEventListener("click", () => {
+      deleteData(item);
+    });
 
-      contaner.appendChild(messageHost);
-      contaner.appendChild(messageGuest);
-      contaner.appendChild(message);
-      contaner.appendChild(btnLike);
-      if (newMessage) contaner.appendChild(btnDel);
-      const firstChild = messages.firstChild;
-      messages.insertBefore(contaner, firstChild);
-    }
+    contaner.appendChild(messageHost);
+    contaner.appendChild(messageGuest);
+    contaner.appendChild(message);
+    contaner.appendChild(btnLike);
+    if (false) contaner.appendChild(btnDel);
+    const firstChild = messages.firstChild;
+    messages.insertBefore(contaner, firstChild);
   });
 }
 
+function deleteMessages() {
+  while (messages.firstChild) messages.removeChild(messages.lastChild);
+}
+
 setInterval(() => {
-  setMessage(true);
+  setMessage();
 }, 1000);
