@@ -34,27 +34,42 @@ body {
   background-color: bisque;
   position: fixed;
   top: 150px;
-  left: 50%;
-  width: 80vw;
-  height: 80vh;
-  transform: translate(-50%);
+  bottom: 50px;
+  left: 80px;
+  right: 80px;
   padding: 3px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
   overflow: scroll;
 }
 .contaner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2px;
+  border: 1px solid black;
 }
 .message {
   grid-column: 1/-1;
+  word-wrap: break-word;
 }
 .message-host {
   font-weight: bold;
 }
 .message-guest {
   font-weight: bold;
+}
+.btn-like {
+  background-color: rgb(145, 207, 51);
+}
+.btn-like:hover {
+  background-color: rgb(197, 255, 109);
+}
+.btn-delete {
+  background-color: rgb(255, 0, 0);
+  color: white;
+}
+.btn-delete:hover {
+  background-color: rgb(255, 87, 87);
+  color: white;
 }

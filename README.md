@@ -15,11 +15,13 @@
 - stretch goals
 
   - form validation done ease
-  - Add a delete button to each message and a DELETE route in the server \*\*\*\*
-  - Create an option for users to like others’ posts \*\*\*\*
+  - Added delete button done not ease
+  - Create like button done not ease
 
 ## References
 
+- delete and like button adding them was ease but the code to work with the sql was evil (PUT and DELETE) for express i did not know about untill a asks for help
+- i use a lot of googleing to make this one to work
 - i use okso.app to help make a layout
 
 https://guestbook-client-q1nt.onrender.com

@@ -64,6 +64,8 @@ async function setMessage(newMessage) {
       messageHost.className = "message-host";
       messageGuest.className = "message-guest";
       message.className = "message";
+      btnLike.className = "btn-like";
+      btnDel.className = "btn-delete";
 
       btnLike.addEventListener("click", () => {
         item.likes++;
