@@ -23,8 +23,11 @@ body {
   gap: 3px;
 }
 
-input {
-  width: 140px;
+.form-set input {
+  width: 145px;
+}
+.form-set button {
+  grid-column: 1/-1;
 }
 
 #messages {
@@ -38,10 +41,13 @@ input {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  overflow: scroll;
+  height: 500px;
 }
 .contaner {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 2px;
 }
 .message {
   grid-column: 1/-1;
