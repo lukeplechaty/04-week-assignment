@@ -29,21 +29,24 @@ async function setMessage(newMessage) {
   data.forEach((item) => {
     if (!ids[item.id]) {
       ids[item.id] = true;
+      const contaner = document.createElement("div");
       const messageHost = document.createElement("p");
       const messageGuest = document.createElement("p");
       const message = document.createElement("p");
 
-      messageHost.textContent = `To ${item.hosts_name}:`;
-      messageGuest.textContent = `From ${item.guest_name}:`;
+      messageHost.textContent = `To ${item.hosts_name}`;
+      messageGuest.textContent = `From ${item.guest_name}`;
       message.textContent = `${item.massage}`;
 
+      contaner.className = "contaner";
       messageHost.className = "message-host";
       messageGuest.className = "message-guest";
       message.className = "message";
 
-      messages.appendChild(messageHost);
-      messages.appendChild(messageGuest);
-      messages.appendChild(message);
+      contaner.appendChild(messageHost);
+      contaner.appendChild(messageGuest);
+      contaner.appendChild(message);
+      messages.appendChild(contaner);
     }
   });
 }
