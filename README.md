@@ -21,7 +21,7 @@
 ## References
 
 - delete and like button adding them was ease but the code to work with the sql was evil (PUT and DELETE) for express i did not know about untill a asks for help
-- i use a lot of googleing to make this one to work
+- i use a lot of googleing to make this one work
 - i use okso.app to help make a layout
 
 https://guestbook-client-q1nt.onrender.com

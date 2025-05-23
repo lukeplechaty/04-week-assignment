@@ -1,7 +1,8 @@
 const url = "https://guestbook-server-4ymb.onrender.com";
+// const url = "http://localhost:3000";
 const form = document.getElementById("form-message");
 const messages = document.getElementById("messages");
-
+let ids = [];
 setMessage();
 
 form.addEventListener("submit", (event) => {
@@ -17,12 +18,14 @@ async function getData() {
   const data = await response.json();
   return data;
 }
-function addData(values) {
-  fetch(url + "/addMsg", {
+async function addData(values) {
+  const response = await fetch(url + "/addMsg", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(values),
   });
+  const data = await response.json();
+  ids.push(data);
 }
 function updateData(values) {
   fetch(`${url}/updateMsg/${values.id}/likes/${values.likes}`, {
@@ -73,7 +76,12 @@ async function setMessage() {
     contaner.appendChild(messageGuest);
     contaner.appendChild(message);
     contaner.appendChild(btnLike);
-    if (false) contaner.appendChild(btnDel);
+    if (
+      ids.find((o) => {
+        return o[0].id === item.id;
+      })
+    )
+      contaner.appendChild(btnDel);
     const firstChild = messages.firstChild;
     messages.insertBefore(contaner, firstChild);
   });

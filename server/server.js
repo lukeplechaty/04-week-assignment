@@ -11,13 +11,13 @@ app.use(express.json());
 
 app.listen(3000, () => console.log("Server running on 3000"));
 
-app.post("/addMsg", (req, res) => {
+app.post("/addMsg", async (req, res) => {
   const body = req.body;
-  const query = db.query(
-    `INSERT INTO guestbook (massage, guest_name, hosts_name) VALUES ($1, $2, $3)`,
+  const query = await db.query(
+    `INSERT INTO guestbook (massage, guest_name, hosts_name) VALUES ($1, $2, $3) RETURNING id`,
     [body.message, body.guest_name, body.hosts_name]
   );
-  res.json(query);
+  res.json(query.rows);
 });
 
 app.get("/getMsg", async (req, res) => {
